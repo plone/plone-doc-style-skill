@@ -1,4 +1,4 @@
-# plone-docstyle
+# plone-doc-style
 
 A Claude Code skill for writing, editing, reviewing, and planning Plone
 documentation. Encodes the Plone docs style guide, the Diataxis framework,
@@ -9,18 +9,18 @@ MyST markup conventions, TOC planning, and gap analysis.
 In Claude Code:
 
 ```
-/plugin marketplace add jensens/plone-docstyle
-/plugin install plone-docstyle@plone-docstyle
+/plugin marketplace add plone/plone-doc-style-skill
+/plugin install plone-doc-style@plone-doc-style
 ```
 
 Then invoke from any Claude Code session:
 
 ```
-/plone-docstyle:plone-docstyle plan <topic>
-/plone-docstyle:plone-docstyle tutorial <topic>
-/plone-docstyle:plone-docstyle how-to <topic>
-/plone-docstyle:plone-docstyle explanation <topic>
-/plone-docstyle:plone-docstyle reference <topic>
+/plone-doc-style:plone-doc-style plan <topic>
+/plone-doc-style:plone-doc-style tutorial <topic>
+/plone-doc-style:plone-doc-style how-to <topic>
+/plone-doc-style:plone-doc-style explanation <topic>
+/plone-doc-style:plone-doc-style reference <topic>
 ```
 
 Without an explicit mode, the skill detects intent from your request and
@@ -37,7 +37,7 @@ asks if the Diataxis quadrant is ambiguous.
 ## Updating
 
 ```
-/plugin marketplace update plone-docstyle
+/plugin marketplace update plone-doc-style
 /reload-plugins
 ```
 
