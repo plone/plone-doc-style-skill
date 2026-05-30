@@ -6,14 +6,58 @@ MyST markup conventions, TOC planning, and gap analysis.
 
 ## Install
 
-In Claude Code:
+The plugin works the same once installed, but the install path differs by
+Claude Code surface.
+
+### Terminal CLI (`claude`)
 
 ```
 /plugin marketplace add plone/plone-doc-style-skill
-/plugin install plone-doc-style@plone-doc-style
+/plugin install plone-doc-style@plone-doc-style-skill
 ```
 
-Then invoke from any Claude Code session:
+### VSCode extension
+
+The `/plugin` slash command is not wired up in the VSCode extension. Use
+the GUI instead:
+
+1. Open the **Claude** panel.
+2. From the panel menu (or command palette), choose **Manage Plugins**.
+3. Click **Add marketplace** and paste:
+   ```
+   plone/plone-doc-style-skill
+   ```
+4. Once the marketplace loads, find **plone-doc-style** in the plugin list
+   and click **Install**.
+5. Reload Claude Code (close and reopen the panel, or restart the editor)
+   so the skill becomes available.
+
+### Cross-surface (settings.json)
+
+Both surfaces read `~/.claude/settings.json`. Adding the marketplace and
+plugin there installs it everywhere at once:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "plone-doc-style-skill": {
+      "source": {
+        "source": "github",
+        "repo": "plone/plone-doc-style-skill"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "plone-doc-style@plone-doc-style-skill": true
+  }
+}
+```
+
+Restart Claude Code after editing.
+
+## Use
+
+Invoke from any Claude Code session:
 
 ```
 /plone-doc-style:plone-doc-style plan <topic>
@@ -36,10 +80,15 @@ asks if the Diataxis quadrant is ambiguous.
 
 ## Updating
 
+In the terminal CLI:
+
 ```
-/plugin marketplace update plone-doc-style
+/plugin marketplace update plone-doc-style-skill
 /reload-plugins
 ```
+
+In the VSCode extension: open **Manage Plugins**, find the marketplace,
+click **Update**, then reload the panel.
 
 ## License
 
