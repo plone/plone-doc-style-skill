@@ -1,17 +1,17 @@
 ---
 name: author
-description: "Write, edit, review, or plan Plone documentation. Covers Diataxis, MyST markup, style rules, TOC planning, gap analysis. Use for any Plone docs task."
+description: "Use when writing, editing, or planning Plone or Plone-ecosystem documentation — including style enforcement, Diataxis quadrant classification, MyST markup choices, table-of-contents planning, or auditing existing docs for gaps."
 argument-hint: "[plan|tutorial|how-to|explanation|reference] topic"
 allowed-tools: Read, Grep, Glob, Write, Edit, Agent
 ---
 
 # Plone Documentation Author and Planner
 
-You are an expert Plone documentation author and information architect.
-Follow every rule below precisely.
+This skill encodes Plone's documentation standards: the Microsoft Writing Style Guide, American English, the Diataxis framework, MyST/Sphinx markup, and planning conventions.
+Apply every section precisely when writing, editing, or planning Plone or Plone-ecosystem documentation.
 
 **Mode detection:** Determine the mode from the user's request or argument:
-- `plan` or words like "plan", "structure", "organize", "audit", "outline", "TOC" -> Section 9 (Planning mode).
+- `plan` or words like "plan", "structure", "organize", "audit", "outline", "TOC" -> Section 10 (Planning mode).
 - `tutorial`, `how-to`, `explanation`, `reference` -> Apply the corresponding Diataxis quadrant from Section 2.
 - Writing/editing without explicit type -> Identify the correct quadrant first (ask if ambiguous), then write.
 
@@ -56,12 +56,23 @@ Plone follows the **Microsoft Writing Style Guide**.
 
 ### Prohibited
 
+**Prose and voice**
+
 - Passive voice (unless truly unavoidable).
+- Multiple sentences per line or broken sentences across lines.
+
+**Headings and filenames**
+
 - Title-cased headings.
+- Underscores in filenames.
+
+**Code blocks**
+
 - Ellipses (`...`) in code blocks -- they break syntax highlighting and are rarely valid.
 - Comments in JSON code blocks (JSON has no comment syntax).
-- Multiple sentences per line or broken sentences across lines.
-- Underscores in filenames.
+
+**Links**
+
 - Links to authenticated/private URLs.
 - Links to blog posts (they rot -- copy content and cite via `{seealso}` instead).
 - Disabling linkcheck to hide broken links.
@@ -282,7 +293,7 @@ When classifying or writing content, use this:
 
 ## 3. PAGE STRUCTURE
 
-### Required metadata (every page)
+### Page metadata (html_meta)
 
 ```markdown
 ---
@@ -296,6 +307,19 @@ myst:
 ```
 
 The `description` and `property=og:description` values must be identical.
+
+**Scope:**
+
+- **Plone core documentation** (`plone/documentation`): required on every page. This matches the policy stated in the Plone authors guide.
+- **Plone ecosystem packages and add-on docs**: strongly recommended on landing pages and section indexes (the URLs people actually share); optional but encouraged on body pages.
+- **Non-Plone projects using this skill** (see Section 10e): adapt or drop -- this frontmatter shape is a Plone convention.
+
+**Realism notes:**
+
+- Nothing in Plone's CI enforces presence -- `make html_meta` will only insert empty stubs. Empty stubs add no value; fill them or skip them.
+- The `keywords` field is SEO-dead (Google ignores it; Bing treats it as a spam signal). Include it on core docs for consistency with the policy; do not bother adding it elsewhere.
+- `sphinxext-opengraph` (used by Plone) generates reasonable fallbacks from the H1 and first paragraph when `html_meta` is absent, so missing metadata on body pages degrades gracefully.
+- The highest payoff per byte is `og:title` + `og:description` on pages that get linked externally (install, getting-started, top-level indexes). Prioritize there if you are triaging.
 
 ### Heading levels
 
@@ -338,6 +362,27 @@ Link to another document:
 ---
 
 ## 4. MyST MARKUP REFERENCE
+
+### When to reach for which markup
+
+Markup is a tool of attention.
+Reaching for a directive signals "look here, this is different from prose."
+Overuse trains readers to skip the signal.
+
+- **Admonitions** (`note`, `tip`, `warning`, `important`, `seealso`): use sparingly -- aim for at most 1-2 per page.
+  - `warning` -- the reader can break something (data loss, irreversible action, security).
+  - `important` -- the reader must do this or the result is wrong, but nothing breaks.
+  - `note` -- a side fact that does not fit the flow but matters.
+  - `tip` -- an optional optimization or shortcut.
+  - `seealso` -- a related link cluster.
+  If a `note` only restates the previous paragraph, delete it and let the prose carry the point.
+- **Tabs**: use for alternative paths to the same outcome (e.g., `pip` vs `hatch` vs `uv`, or macOS vs Linux vs Windows). Do not use tabs when the outcomes differ -- those are separate pages.
+- **Cards and grids**: reserve for landing pages and section indexes. Not for body content.
+- **Cross-references** (`{ref}`, `{doc}`, `{term}`): always reference, never duplicate. If two pages need the same fact, one owns it and the other links. Duplicated facts drift.
+- **`{guilabel}` and `{menuselection}`**: use whenever naming a real UI element. They render as visual badges and improve scanability for both readers and screen readers.
+- **Inline code vs code block**: inline (`` `code` ``) for filenames, identifiers, short literals, command flags. A code block is for anything multi-line or anything needing syntax highlighting.
+- **Figures vs images**: use figures (`{eval-rst} .. figure::`) when the visual needs a caption that survives outside the immediate context (search results, mobile linearization). Plain `{image}` for decorative or inline visuals.
+- **`{versionremoved}`, `{versionadded}`, `{deprecated}`**: prefer over prose ("This was removed in 6.0") -- the directive renders as a styled badge and is machine-readable for changelog tooling.
 
 ### Code blocks
 
@@ -754,7 +799,7 @@ Before submitting:
 
 ---
 
-## 8. TASK EXECUTION -- WRITING MODE
+## 9. TASK EXECUTION -- WRITING MODE
 
 When the user asks you to write or edit documentation:
 
@@ -769,18 +814,18 @@ When the user asks you to write or edit documentation:
 
 ---
 
-## 9. TASK EXECUTION -- PLANNING MODE
+## 10. TASK EXECUTION -- PLANNING MODE
 
 Use this mode when the user wants to plan, structure, audit, or outline documentation for a project, package, feature, or entire site.
 
-### 9a. Planning process
+### 10a. Planning process
 
 1. **Understand scope.** What is being documented? A single package? A feature area? An entire project? Ask if unclear.
 2. **Inventory existing content.** Read existing docs, README files, docstrings, and changelog to understand what already exists.
 3. **Identify the audience(s).** Who will read this? Beginners, integrators, developers, admins? This drives Diataxis balance.
 4. **Apply the Diataxis grid.** For every topic area, ask: what does the reader need?
 
-### 9b. Diataxis coverage matrix
+### 10b. Diataxis coverage matrix
 
 For each topic area, fill in this grid to find gaps:
 
@@ -807,7 +852,7 @@ Produce one grid per topic area. Mark each cell:
 - **missing** -- no page covers this need.
 - **n/a** -- this quadrant genuinely does not apply (rare).
 
-### 9c. Output: documentation plan
+### 10c. Output: documentation plan
 
 Deliver the plan as a structured document with these sections:
 
@@ -819,7 +864,7 @@ Deliver the plan as a structured document with these sections:
 
 #### II. Diataxis coverage audit
 
-The coverage matrix (section 9b) for every identified topic area.
+The coverage matrix (section 10b) for every identified topic area.
 Highlight gaps and mixed-quadrant pages that need splitting.
 
 #### III. Document tree (TOC)
@@ -891,7 +936,7 @@ Within each phase, list pages in dependency order (prerequisite pages first).
 - Cross-reference strategy (how pages link to each other).
 - Any deviations from standard Plone docs conventions (with justification).
 
-### 9d. Planning anti-patterns
+### 10d. Planning anti-patterns
 
 - **Do not plan pages that mix quadrants.** If a topic needs both a how-to and an explanation, plan two separate pages.
 - **Do not plan encyclopedic coverage.** Prioritize what readers actually need. Practical usability beats exhaustive completeness.
@@ -899,7 +944,7 @@ Within each phase, list pages in dependency order (prerequisite pages first).
 - **Do not front-load all tutorials.** A balanced docs set needs all four quadrants. Reference and explanation are not afterthoughts.
 - **Do not create deep nesting.** Two levels of folders is usually sufficient. Three is the maximum.
 
-### 9e. Adapting to non-Plone projects
+### 10e. Adapting to non-Plone projects
 
 This planning framework works for any Sphinx/MyST documentation project.
 When planning docs outside the Plone core documentation repository:
@@ -909,5 +954,3 @@ When planning docs outside the Plone core documentation repository:
 - If the project uses a different Sphinx theme, note any markup differences.
 - The `html_meta` frontmatter is Plone-specific; other projects may use different metadata.
 - Vale and linkcheck are recommended but may not be configured; note this in the plan.
-
-$ARGUMENTS
