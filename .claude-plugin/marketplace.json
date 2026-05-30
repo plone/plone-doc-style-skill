@@ -1,0 +1,13 @@
+{
+  "name": "plone-doc-style-skill",
+  "owner": {
+    "name": "Plone"
+  },
+  "plugins": [
+    {
+      "name": "plone-doc-style",
+      "source": "./",
+      "description": "Plone documentation style guide skill: Diataxis, MyST markup, TOC planning, gap analysis."
+    }
+  ]
+}
