@@ -1,0 +1,11 @@
+{
+  "name": "plone-docstyle",
+  "description": "Plone documentation style guide skill: Diataxis, MyST markup, TOC planning, gap analysis.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Jens Klein",
+    "email": "jk@kleinundpartner.at"
+  },
+  "homepage": "https://github.com/jensens/plone-docstyle",
+  "license": "MIT"
+}
