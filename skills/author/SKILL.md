@@ -1,5 +1,5 @@
 ---
-name: plone-doc-style
+name: author
 description: "Write, edit, review, or plan Plone documentation. Covers Diataxis, MyST markup, style rules, TOC planning, gap analysis. Use for any Plone docs task."
 argument-hint: "[plan|tutorial|how-to|explanation|reference] topic"
 allowed-tools: Read, Grep, Glob, Write, Edit, Agent

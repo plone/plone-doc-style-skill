@@ -60,11 +60,11 @@ Restart Claude Code after editing.
 Invoke from any Claude Code session:
 
 ```
-/plone-doc-style:plone-doc-style plan <topic>
-/plone-doc-style:plone-doc-style tutorial <topic>
-/plone-doc-style:plone-doc-style how-to <topic>
-/plone-doc-style:plone-doc-style explanation <topic>
-/plone-doc-style:plone-doc-style reference <topic>
+/plone-doc-style:author plan <topic>
+/plone-doc-style:author tutorial <topic>
+/plone-doc-style:author how-to <topic>
+/plone-doc-style:author explanation <topic>
+/plone-doc-style:author reference <topic>
 ```
 
 Without an explicit mode, the skill detects intent from your request and
