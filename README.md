@@ -73,6 +73,7 @@ asks if the Diataxis quadrant is ambiguous.
 ## What it covers
 
 - **Style rules** — voice, tense, terminology, capitalization, link style
+- **Sentence construction** — the `, so` chains, semicolon joins, and `X, not Y` contrasts that mark prose as machine-written
 - **Diataxis** — tutorial / how-to / reference / explanation quadrants and when each applies
 - **MyST markup** — admonitions, cross-references, code blocks, directives
 - **TOC planning** — structuring sections, ordering pages, avoiding orphans

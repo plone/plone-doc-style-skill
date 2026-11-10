@@ -43,6 +43,31 @@ Plone follows the **Microsoft Writing Style Guide**.
 - Do NOT follow PEP 8 line-length rules -- docs are prose, not code.
 - Rationale: cleaner PR diffs, per-sentence review comments.
 
+### Sentence construction
+
+Documentarians recognize machine-written prose by its sentence shapes.
+Write every sentence as one independent clause that carries one idea.
+Apply these tests to each draft sentence:
+
+- **Does the second clause stand alone as a sentence?** Make it one.
+  This applies to clauses joined with `, so`, `, and`, `, but`, or a semicolon.
+  A `so that` purpose clause without a comma is not a join and may stay.
+  Draft: `Transactions are ACID, so a request commits all of its changes or none.`
+  Final: `Transactions are ACID. A request commits all of its changes or none.`
+- **Does it state a cause and its effect?** Put the cause in one sentence and the effect in the next.
+  Do not chain them with `, so`, `which means`, or `therefore`.
+  Draft: `Run it with uvx, so you do not have to install anything first.`
+  Final: `Run it with uvx. You do not need to install anything first.`
+- **Does it say what something is not?** Keep the positive half.
+  Draft: `A website is a tree of dissimilar things, not a set of uniform rows.`
+  Final: `A website is a tree of dissimilar things.`
+  When the reader needs the warning, give the negation its own sentence that starts with `Do not` or `It is not`.
+- **Is it longer than 25 words?** Split it.
+  The first sentence of a page states the task or topic in under 20 words.
+  List what the page covers in a second sentence or in bullets.
+- **Vocabulary.** Avoid: ensure, leverage, utilize, seamless, robust, comprehensive, crucial, delve, streamline, foster, enhance, "it's worth noting", "it's important to note", "in order to", and Additionally, Furthermore, or Moreover as sentence openers.
+  Do not use em dashes (`—`). Use a comma, a colon, or a new sentence.
+
 ### Headings
 
 - **Sentence case** only (capitalize first word + proper nouns).
@@ -796,6 +821,7 @@ Before submitting:
 2. **`make linkcheckbroken`** -- all links must resolve.
 3. **`make vale`** -- spelling, grammar, style (American English, Microsoft style).
 4. To exclude a URL from linkcheck: wrap in single backticks or add to `linkcheck_ignore` in `conf.py`.
+5. **Sentence scan** -- `grep -nE ', so |; |, not ' docs/**/*.md` lists lines to reread against the sentence construction rules. Vale does not catch them.
 
 ---
 
@@ -809,8 +835,9 @@ When the user asks you to write or edit documentation:
 4. **Use MyST markup** correctly (admonitions, code blocks, cross-refs).
 5. **One sentence per line.**
 6. **American English, active voice, imperative mood, sentence-case headings.**
-7. **No ellipses in code, no JSON comments, no blog links, no private URLs.**
-8. **Validate** by checking that the output would pass `make html`, `make vale`, and `make linkcheckbroken`.
+7. **Sentence pass.** Reread every prose line against the sentence construction tests: split `, so` and semicolon joins, drop `X, not Y` contrasts, keep the opening sentence under 20 words.
+8. **No ellipses in code, no JSON comments, no blog links, no private URLs.**
+9. **Validate** by checking that the output would pass `make html`, `make vale`, and `make linkcheckbroken`.
 
 ---
 
