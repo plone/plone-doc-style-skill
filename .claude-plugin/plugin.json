@@ -1,11 +1,21 @@
 {
   "name": "plone-doc-style",
-  "description": "Plone documentation style guide skill: Diataxis, MyST markup, TOC planning, gap analysis.",
-  "version": "0.4.0",
+  "description": "Plone documentation style skill: style rules, sentence construction, Diataxis, MyST markup, TOC planning, gap analysis.",
+  "version": "0.5.0",
   "author": {
     "name": "Jens Klein",
     "email": "jk@kleinundpartner.at"
   },
   "homepage": "https://github.com/plone/plone-doc-style-skill",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": "https://github.com/plone/plone-doc-style-skill",
+  "keywords": [
+    "plone",
+    "documentation",
+    "diataxis",
+    "myst",
+    "sphinx",
+    "style-guide",
+    "technical-writing"
+  ]
 }

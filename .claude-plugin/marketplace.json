@@ -7,7 +7,15 @@
     {
       "name": "plone-doc-style",
       "source": "./",
-      "description": "Plone documentation style guide skill: Diataxis, MyST markup, TOC planning, gap analysis."
+      "description": "Plone documentation style skill: style rules, sentence construction, Diataxis, MyST markup, TOC planning, gap analysis.",
+      "category": "documentation",
+      "tags": [
+        "plone",
+        "documentation",
+        "diataxis",
+        "myst"
+      ]
     }
-  ]
+  ],
+  "description": "Skills for writing and planning Plone documentation."
 }
